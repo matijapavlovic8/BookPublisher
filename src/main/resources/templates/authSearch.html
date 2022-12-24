@@ -12,26 +12,27 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-light fw-bold" href="/static">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="/sign_in">Sign in</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="/sign_up">Sign up</a>
+                <a class="nav-link text-light" href="/">Home</a>
             </li>
         </ul>
     </div>
 </nav>
-    <div class="container-fluid p-5 text-center">
-        <h1>BookPublisher v1.0</h1>
-        <p>Welcome to my Book publisher!</p>
-    </div>
-    <div class = "container-fluid text-center justify-content-evenly">
-        <a class="btn btn-success" href="/book_search">Search for books</a>
-        <a class="btn btn-success" href="/auth_search">Search for authors</a>
-        <a class="btn btn-success" href="/publish">Publish a new book</a>
-    </div>
+<div class="container-fluid text-center my-4">
+    <h1>Search <img width="64px" th:src="@{images/loupe.png}" /></h1>
+</div>
+<div class="container-fluid text-center">
+    <form class="container-fluid text-center w-25">
+        <div class="mb-3">
+            <label for="search" class="form-label"></label>
+            <input type="text" class="form-control" id="search" aria-describedby="searchHelp">
+            <div id="searchHelp" class="form-text">Search for authors</div>
+        </div>
+        <button type="submit" class="btn btn-success" aria-expanded="false">
+            Search
+        </button>
+
+    </form>
+</div>
 <div class="text-center">
     <img width="400px" th:src="@{images/8852.jpg}" />
 </div>

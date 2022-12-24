@@ -2,6 +2,7 @@ package com.infinum.bookpublisher.services;
 
 import com.infinum.bookpublisher.domain.Author;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

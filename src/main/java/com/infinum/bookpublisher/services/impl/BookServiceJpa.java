@@ -4,6 +4,7 @@ import com.infinum.bookpublisher.DAO.BookRepository;
 import com.infinum.bookpublisher.domain.Book;
 import com.infinum.bookpublisher.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
