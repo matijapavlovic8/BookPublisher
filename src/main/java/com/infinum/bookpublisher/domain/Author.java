@@ -1,11 +1,6 @@
 package com.infinum.bookpublisher.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Instances of class {@code Author} represent authors of books.
@@ -20,7 +15,7 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
-    private long id;
+    private Long id;
 
     /**
      * Authors name.
@@ -43,7 +38,7 @@ public class Author {
         this.numberOfPublishedBooks = 0;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

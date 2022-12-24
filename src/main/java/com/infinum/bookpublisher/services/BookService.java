@@ -7,8 +7,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+
 public interface BookService {
     List<Book> listAllBooks();
     Optional<Book> findByISBN(String isbn);
+    List<Book> findByTitle(String title);
+    Book addBook(Book book);
+    Book removeBook(String isbn);
+
+
 }
