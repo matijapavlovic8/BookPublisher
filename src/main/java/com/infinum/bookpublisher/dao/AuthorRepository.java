@@ -1,4 +1,4 @@
-package com.infinum.bookpublisher.DAO;
+package com.infinum.bookpublisher.dao;
 
 import com.infinum.bookpublisher.domain.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +13,5 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
     List<Author> findAuthorByLastNameOrderByNumberOfPublishedBooksDesc(String lastname);
     List<Author> findAuthorByNameOrderByNumberOfPublishedBooksDesc(String name);
     List<Author> findByOrderById();
-
+    Optional<Author> findByNameAndLastName(String name, String lastname);
 }

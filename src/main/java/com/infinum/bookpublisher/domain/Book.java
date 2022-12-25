@@ -1,5 +1,9 @@
 package com.infinum.bookpublisher.domain;
 
+import com.infinum.bookpublisher.domain.Author;
+import com.infinum.bookpublisher.domain.Genre;
+import lombok.NoArgsConstructor;
+
 import java.util.Collection;
 import javax.persistence.*;
 
@@ -9,12 +13,15 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "book")
+@NoArgsConstructor
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     /**
      * Books unique international standard book number.
      */
-    @Id
     @Column(name = "isbn", nullable = false, unique = true)
     private String ISBN;
 
@@ -34,9 +41,9 @@ public class Book {
      * List of books authors.
      */
     @ManyToMany
-    @JoinTable(name = "book_authors", joinColumns = @JoinColumn(name = "isbn",
-    referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id",
-    referencedColumnName = "isbn"))
+    @JoinTable(name = "book_authors", joinColumns = @JoinColumn(name = "book_id",
+    referencedColumnName = "author_id"), inverseJoinColumns = @JoinColumn(name = "author_id",
+    referencedColumnName = "book_id"))
     private Collection<Author> authors;
 
     public Book(String isbn, String title, Genre genre, Collection<Author> authors){

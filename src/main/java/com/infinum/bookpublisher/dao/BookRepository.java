@@ -1,4 +1,4 @@
-package com.infinum.bookpublisher.DAO;
+package com.infinum.bookpublisher.dao;
 
 import com.infinum.bookpublisher.domain.Book;
 import com.infinum.bookpublisher.domain.Genre;

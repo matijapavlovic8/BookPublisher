@@ -1,4 +1,4 @@
-package com.infinum.bookpublisher.DTO;
+package com.infinum.bookpublisher.dto;
 
 public class AuthorDTO {
     private long id;
@@ -17,31 +17,18 @@ public class AuthorDTO {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getLastname() {
         return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public int getNumberOfPublishedBooks() {
         return numberOfPublishedBooks;
     }
 
-    public void setNumberOfPublishedBooks(int numberOfPublishedBooks) {
-        this.numberOfPublishedBooks = numberOfPublishedBooks;
-    }
+
 }

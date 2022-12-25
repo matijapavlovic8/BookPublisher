@@ -69,4 +69,5 @@ public class Author {
     public void setNumberOfPublishedBooks(int numberOfPublishedBooks) {
         this.numberOfPublishedBooks = numberOfPublishedBooks;
     }
+
 }

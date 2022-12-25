@@ -21,17 +21,19 @@
     <h1>Search <img width="64px" th:src="@{images/loupe.png}" /></h1>
 </div>
 <div class="container-fluid text-center">
-    <form class="container-fluid text-center w-25">
+    <form class="container-fluid text-center w-25" th:action="@{/search/author}" method="get">
         <div class="mb-3">
             <label for="search" class="form-label"></label>
-            <input type="text" class="form-control" id="search" aria-describedby="searchHelp">
+            <input type="text" class="form-control" id="search" aria-describedby="searchHelp" th:value="${search}">
             <div id="searchHelp" class="form-text">Search for authors</div>
         </div>
         <button type="submit" class="btn btn-success" aria-expanded="false">
             Search
         </button>
-
     </form>
+    <div class="container-fluid text-center" th:if="${search}">
+
+    </div>
 </div>
 <div class="text-center">
     <img width="400px" th:src="@{images/8852.jpg}" />

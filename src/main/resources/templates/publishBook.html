@@ -21,31 +21,30 @@
     <h1>Publish <img width="64px" th:src="@{images/8852.jpg}" /></h1>
 </div>
 <div class="container-fluid text-center">
-    <form class="container-fluid text-center w-50">
+    <form class="container-fluid text-center w-50" th:action="@{/publish}" method="post" th:object="${book}">
         <div class="mb-3">
             <label for="title" class="form-label"></label>
-            <input type="text" class="form-control" id="title" aria-describedby="titleHelp">
+            <input type="text" class="form-control" id="title" aria-describedby="titleHelp" th:field="*{title}">
             <div id="titleHelp" class="form-text">Enter the books title</div>
         </div>
         <div class="mb-3">
             <label for="genre" class="form-label"></label>
-            <input type="text" class="form-control" id="genre" aria-describedby="genreHelp">
+            <input type="text" class="form-control" id="genre" aria-describedby="genreHelp" th:field="*{genre}">
             <div id="genreHelp" class="form-text">Enter the genre of the book</div>
         </div>
         <div class="mb-3">
             <label for="isbn" class="form-label"></label>
-            <input type="text" class="form-control" id="isbn" aria-describedby="isbnHelp">
+            <input type="text" class="form-control" id="ISBN" aria-describedby="isbnHelp" th:field="*{ISBN}">
             <div id="isbnHelp" class="form-text">Enter the ISBN of the book, divide the groups with dashes ("-")</div>
         </div>
         <div class="mb-3">
             <label for="authors" class="form-label"></label>
-            <input type="text" class="form-control" id="authors" aria-describedby="authorsHelp">
+            <input type="text" class="form-control" id="authors" aria-describedby="authorsHelp" th:field="*{authors}">
             <div id="authorsHelp" class="form-text">Enter the auhor of the book, if there are multiple divide them with colons(",")</div>
         </div>
         <button type="submit" class="btn btn-success" aria-expanded="false">
             Publish
         </button>
-
     </form>
 </div>
 <div class="text-center">

@@ -1,19 +1,43 @@
 package com.infinum.bookpublisher.services;
 
+import com.infinum.bookpublisher.dao.BookRepository;
 import com.infinum.bookpublisher.domain.Book;
-import org.springframework.stereotype.Component;
+import com.infinum.bookpublisher.domain.Genre;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+public class BookService {
+    @Autowired
+    private BookRepository bookRepository;
 
-public interface BookService {
-    List<Book> listAllBooks();
-    Optional<Book> findByISBN(String isbn);
-    List<Book> findByTitle(String title);
-    Book addBook(Book book);
-    Book removeBook(String isbn);
+    public List<Book> listAllBooks() {
+        return this.bookRepository.findAll();
+    }
 
+    public Optional<Book> findByISBN(String isbn) {
+        return Optional.empty();
+    }
 
+    public List<Book> findByTitle(String title) {
+        return this.bookRepository.findBookByTitle(title);
+    }
+
+    public void addBook(Book book) {
+        this.bookRepository.save(book);
+    }
+
+    public Book removeBook(String isbn) {
+        Book book = findByISBN(isbn).orElse(null);
+        assert book != null;
+        this.bookRepository.delete(book);
+        return book;
+    }
+
+    public List<Book> findByGenre(Genre genre) {
+        return this.bookRepository.findBookByGenreOrderByTitle(genre);
+    }
 }
