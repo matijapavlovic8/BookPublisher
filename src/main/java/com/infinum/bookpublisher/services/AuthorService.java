@@ -34,10 +34,11 @@ public class AuthorService {
 
     public Author findAuthor(String fullname){
         fullname = fullname.trim();
-        String name = fullname.substring(0, fullname.lastIndexOf("\\s+"));
-        String lastname = fullname.substring(fullname.lastIndexOf("\\s+"), fullname.length() - 1);
+        String name = fullname.split("\\s+")[0];
+        String lastname = fullname.split("\\s+")[1];
         return this.authorRepository.findByNameAndLastName(name, lastname).orElse(null);
     }
+
 
     public void incrementTheNumberOfPublishedBooks(Author author){
         author.setNumberOfPublishedBooks(author.getNumberOfPublishedBooks() + 1);

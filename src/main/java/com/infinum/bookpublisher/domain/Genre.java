@@ -7,9 +7,12 @@ package com.infinum.bookpublisher.domain;
 public class Genre {
 
     private GenreType genre;
+    private String genreStr;
 
     public Genre(String genre){
-        this.genre = setGenreType(genre);
+        this.genreStr = genre;
+        if(genre != null)
+            this.genre = setGenreType(genre);
     }
 
     private GenreType setGenreType(String genre){
@@ -31,6 +34,12 @@ public class Genre {
         return genre;
     }
     public void setGenre(String genre){
+        if(genre == null)
+            return;
         this.genre = setGenreType(genre);
+    }
+
+    public String toString(){
+        return this.genreStr;
     }
 }

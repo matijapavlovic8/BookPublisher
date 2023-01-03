@@ -5,7 +5,7 @@ import com.infinum.bookpublisher.domain.Genre;
 import lombok.NoArgsConstructor;
 
 import java.util.Collection;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Instances of class {@code Book} represent books in the publishing service.
@@ -35,18 +35,24 @@ public class Book {
      * Genre of the book.
      */
     @Column(name = "genre")
-    private Genre genre;
+    private String genre;
 
     /**
      * List of books authors.
      */
-    @ManyToMany
-    @JoinTable(name = "book_authors", joinColumns = @JoinColumn(name = "book_id",
-    referencedColumnName = "author_id"), inverseJoinColumns = @JoinColumn(name = "author_id",
-    referencedColumnName = "book_id"))
+    @ManyToMany (
+        cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+        })
+    @JoinTable(
+        name = "authors",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Collection<Author> authors;
 
-    public Book(String isbn, String title, Genre genre, Collection<Author> authors){
+
+    public Book(String isbn, String title, String genre, Collection<Author> authors){
         this.ISBN = isbn;
         this.title = title;
         this.genre = genre;
@@ -70,11 +76,11 @@ public class Book {
     }
 
     public Genre getGenre() {
-        return genre;
+        return new Genre(genre);
     }
 
     public void setGenre(Genre genre) {
-        this.genre = genre;
+        this.genre = genre.toString();
     }
 
     public Collection<Author> getAuthors() {

@@ -21,21 +21,16 @@
     <h1>Search <img width="64px" th:src="@{images/loupe.png}" /></h1>
 </div>
 <div class="container-fluid text-center">
-    <form class="container-fluid text-center w-25"th:action="@{/search}" method="get">
+    <form class="container-fluid text-center w-25" th:action="@{/search}" method="post">
         <div class="mb-3">
             <label for="search" class="form-label"></label>
-            <input type="text" class="form-control" id="search" aria-describedby="searchHelp" th:value="${search}">
+            <input type="text" class="form-control" id="search" aria-describedby="searchHelp" th:name="search">
             <div id="searchHelp" class="form-text">Search for books by title, ISBN or genre</div>
         </div>
         <div class="btn-group">
-            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <button type="submit" class="btn btn-success" aria-expanded="false">
                 Search
             </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" type="submit" href="search/title">Search by title</a></li>
-                <li><a class="dropdown-item" type="submit" href="search/isbn">Search by ISBN</a></li>
-                <li><a class="dropdown-item" type="submit" href="search/genre">Search by genre</a></li>
-            </ul>
         </div>
     </form>
 </div>
@@ -49,21 +44,28 @@
             <tr>
                 <th scope="col">Title</th>
                 <th scope="col">Genre</th>
-                <th scope="col">Author</th>
+                <th scope="col">Authors</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="b : ${books}" th:field="${b}">
                 <td th:text="${b.title}"></td>
                 <td th:text="${b.genre}"></td>
-                <td th:each="a: b.authors" th:text="a.lastname"></td>
+                <td th:each="a: ${b.authors}" th:text="${a.getLastName()}"></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+<div th:if="${#lists.isEmpty(books) && pressed != null}" class="container-fluid p-5 text-center">
+    <h1>I am sorry but no books were found!</h1>
+    <div class="text-center">
+        <img width="400px" th:src="@{images/notf.jpg}"/>
+    </div>
+</div>
+
 <div class="text-center">
-    <img width="400px" th:src="@{images/8852.jpg}" />
+    <img width="400px" th:src="@{images/auth.jpg}" />
 </div>
 </body>
 </html>

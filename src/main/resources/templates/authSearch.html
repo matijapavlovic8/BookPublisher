@@ -21,22 +21,50 @@
     <h1>Search <img width="64px" th:src="@{images/loupe.png}" /></h1>
 </div>
 <div class="container-fluid text-center">
-    <form class="container-fluid text-center w-25" th:action="@{/search/author}" method="get">
+    <form class="container-fluid text-center w-25" th:action="@{/searchauth}" method="post">
         <div class="mb-3">
             <label for="search" class="form-label"></label>
-            <input type="text" class="form-control" id="search" aria-describedby="searchHelp" th:value="${search}">
+            <input type="text" class="form-control" id="search" aria-describedby="searchHelp" th:name="search">
             <div id="searchHelp" class="form-text">Search for authors</div>
         </div>
-        <button type="submit" class="btn btn-success" aria-expanded="false">
-            Search
-        </button>
+        <div class="btn-group">
+            <button type="submit" class="btn btn-success" aria-expanded="false">
+                Search
+            </button>
+        </div>
     </form>
-    <div class="container-fluid text-center" th:if="${search}">
-
+    <div class="container-fluid text-center" th:if="${auth_res != null}">
+        <div class="container-fluid p-5 text-center">
+            <h1>We found the following authors <img width="64px" th:src="@{images/8852.jpg}" /></h1>
+        </div>
+        <div class="container my-5">
+            <table class="table table-striped table-success">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Lastname</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${auth_res.getId()}"></td>
+                    <td th:text="${auth_res.getName()}"></td>
+                    <td th:text="${auth_res.getLastName()}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<div class="text-center">
-    <img width="400px" th:src="@{images/8852.jpg}" />
+    <div th:if="${auth_res == null && pressed != null}" class="container-fluid p-5 text-center">
+        <h1>I am sorry but no authors were found!</h1>
+        <div class="text-center">
+            <img width="400px" th:src="@{images/notf.jpg}"/>
+        </div>
+    </div>
+    <div class="text-center">
+        <img width="400px" th:src="@{images/auth.jpg}"/>
+    </div>
 </div>
 </body>
 </html>

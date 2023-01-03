@@ -1,6 +1,9 @@
 package com.infinum.bookpublisher.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+
+import java.util.Collection;
 
 /**
  * Instances of class {@code Author} represent authors of books.
@@ -8,6 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "author")
+@NoArgsConstructor
 public class Author {
     /**
      * Authors unique identifier.
@@ -31,6 +35,18 @@ public class Author {
 
     @Column(name = "num_of_published_books")
     private int numberOfPublishedBooks;
+
+    @ManyToMany (
+    cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
+    @JoinTable(
+        name = "books",
+        joinColumns = @JoinColumn(name = "author_id"),
+        inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private Collection<Book> books;
+
 
     public Author(String name, String lastName){
         this.name = name;
@@ -70,4 +86,7 @@ public class Author {
         this.numberOfPublishedBooks = numberOfPublishedBooks;
     }
 
+    public void increaseNumberOfPublishedBooks(){
+        this.numberOfPublishedBooks++;
+    }
 }
