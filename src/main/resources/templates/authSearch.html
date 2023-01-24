@@ -44,6 +44,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Lastname</th>
+                    <th scope="col">Number of published books</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,7 @@
                     <td th:text="${auth_res.getId()}"></td>
                     <td th:text="${auth_res.getName()}"></td>
                     <td th:text="${auth_res.getLastName()}"></td>
+                    <td th:text="${auth_res.getNumberOfPublishedBooks()}"></td>
                 </tr>
                 </tbody>
             </table>
